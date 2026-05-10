@@ -4,7 +4,7 @@ This repository contains a hardware/software co-design project implementing a sm
 
 The system integrates a 4x4 INT8 systolic array accelerator with a MicroBlaze V soft processor using Vivado block design and Vitis bare-metal software. The MicroBlaze writes input matrices to shared BRAM, programs memory-mapped control registers, launches the accelerator, polls for completion, and verifies the output through UART.
 
-##Software Version
+## Software Version
 Vivado/Vitis 2025.2
 
 ## Project Summary
