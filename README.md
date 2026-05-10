@@ -4,6 +4,9 @@ This repository contains a hardware/software co-design project implementing a sm
 
 The system integrates a 4x4 INT8 systolic array accelerator with a MicroBlaze V soft processor using Vivado block design and Vitis bare-metal software. The MicroBlaze writes input matrices to shared BRAM, programs memory-mapped control registers, launches the accelerator, polls for completion, and verifies the output through UART.
 
+##Software Version
+Vivado/Vitis 2025.2
+
 ## Project Summary
 
 Matrix multiplication is a core operation in neural networks, scientific computing, DSP, and many embedded workloads. General-purpose processors often spend significant time moving data between memory and arithmetic units. This project explores a systolic-array accelerator where operands are reused inside a grid of processing elements, reducing repeated memory accesses and improving throughput for small matrix operations.
