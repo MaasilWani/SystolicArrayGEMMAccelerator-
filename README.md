@@ -196,29 +196,97 @@ Approximate utilization for the complete design:
 | AXI UartLite | 92 | 111 | 10 |
 | Total | 4917 | 4329 | 157 |
 
-## Recreating the Vivado Project
+## Recreate Vivado Project
 
-Clone this repository, open Vivado, and run:
+The recommended way to recreate the Vivado design from this repository is to create a fresh Vivado project and source the saved block design Tcl script.
 
-```tcl
-source C:/Users/maasi/Desktop/microblaze_accelerator_project/vivado/scripts/recreate_project.tcl
+Do **not** rely only on `recreate_project.tcl` unless the source paths have been cleaned, because the exported project Tcl may contain machine-specific paths from the original Vivado project.
+
+### 1. Create a fresh Vivado project
+
+Open Vivado and create a new RTL project:
+
+```text
+Project name: systolic_array_T3_recreated
+Project location: <repo_root>
+Board/Part: Arty A7-100T / xc7a100tcsg324-1
 ```
 
-If the custom IP repository is not detected automatically, run:
+Choose:
+
+```text
+Do not specify sources at this time
+```
+
+### 2. Add the custom IP repository
+
+In the Vivado Tcl Console, run:
 
 ```tcl
-set_property ip_repo_paths C:/Users/maasi/Desktop/microblaze_accelerator_project/vivado/ip_repo [current_project]
+set_property ip_repo_paths <repo_root>/vivado/ip_repo [current_project]
 update_ip_catalog
 ```
 
-Then:
+Example on Windows:
 
-1. Open the block design.
-2. Validate the design.
-3. Generate output products if needed.
-4. Run synthesis and implementation.
-5. Generate bitstream.
-6. Export hardware for Vitis.
+```tcl
+set_property ip_repo_paths C:/Users/maasi/Desktop/SystolicArrayGEMMAccelerator-/vivado/ip_repo [current_project]
+update_ip_catalog
+```
+
+### 3. Recreate the block design
+
+Run:
+
+```tcl
+source <repo_root>/vivado/scripts/block_design.tcl
+```
+
+Example:
+
+```tcl
+source C:/Users/maasi/Desktop/SystolicArrayGEMMAccelerator-/vivado/scripts/block_design.tcl
+```
+
+Then run:
+
+```tcl
+validate_bd_design
+save_bd_design
+```
+
+### 4. Add constraints
+
+Add the board constraint file from:
+
+```text
+vivado/constraints/
+```
+
+In Vivado:
+
+```text
+Add Sources → Add or Create Constraints
+```
+
+### 5. Generate the design
+
+After the block design validates:
+
+```text
+Generate Output Products
+Create HDL Wrapper
+Run Synthesis
+Run Implementation
+Generate Bitstream
+Export Hardware
+```
+
+When exporting hardware for Vitis, select:
+
+```text
+Include bitstream
+```
 
 ## Running the Vitis Application
 
