@@ -1,0 +1,36 @@
+# Vivado logs and temporary files
+*.jou
+*.log
+*.str
+*.backup.jou
+*.backup.log
+.Xil/
+
+# Vivado generated folders
+.cache/
+.hw/
+.ip_user_files/
+.runs/
+.sim/
+.gen/
+
+# Vivado output products
+*.bit
+*.bin
+*.ltx
+*.dcp
+*.rpt
+*.wdb
+
+# Vitis generated folders/files
+Debug/
+Release/
+.metadata/
+.settings/
+*.elf
+*.map
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
